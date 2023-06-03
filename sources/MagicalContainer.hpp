@@ -12,53 +12,91 @@ using namespace std ;
 namespace ariel {
     class MagicalContainer {
     private:
+
         list<int> elementsList ;
+
         list<int*> primesList ;
+
     public:
+        MagicalContainer() ;
+
+        void addElement(int element);
+
+        void removeElement(int element);
+
+        int size();
+
+        list<int> getList(){
+            return elementsList ;
+        }
+
+        list<int*> getPrimesList(){
+            return primesList ;
+        }
+
         class AscendingIterator {
         private:
-            AscendingIterator(list<int>* elementsList, list<int>::iterator iter, int location) ;
             list<int>* elementsList;
             list<int>::iterator iter ;
             int location ;
+
+            AscendingIterator(list<int>* elementsList, list<int>::iterator iter, int location) ;
+
         public:
             AscendingIterator(MagicalContainer& container) ;
+
             AscendingIterator(const AscendingIterator& other) ;
+
             AscendingIterator(AscendingIterator&& other) noexcept = default;
+
             AscendingIterator& operator=(AscendingIterator&& other) noexcept = default;
+
             ~AscendingIterator() ;
 
             AscendingIterator begin() const ;
+
             AscendingIterator end() const ;
+
             AscendingIterator& operator=(const AscendingIterator& other) ;
 
             bool operator==(const AscendingIterator& iter) const ;
+
             bool operator!=(const AscendingIterator& iter) const ;
+
             bool operator<(const AscendingIterator& iter) const ;
 
             bool operator>(const AscendingIterator& iter) const ;
+
             AscendingIterator& operator++() ;
+
             int operator*() ;
         };
 
         class PrimeIterator {
         private:
-            PrimeIterator(list<int*>* primesList, list<int*>::iterator iter, int location);
             list<int*> *primesList;
             list<int*>::iterator iter;
             int location ;
 
+            PrimeIterator(list<int*>* primesList, list<int*>::iterator iter, int location);
+
         public:
             PrimeIterator(MagicalContainer& container);
+
             PrimeIterator(const PrimeIterator& other) ;
+
             PrimeIterator(PrimeIterator&& other) noexcept = default;
+
             PrimeIterator& operator=(PrimeIterator&& other) noexcept = default;
+
             ~PrimeIterator() ;
 
             PrimeIterator begin() const;
 
             PrimeIterator end() const;
+
             PrimeIterator& operator=(const PrimeIterator& other) ;
+
             bool operator==(const PrimeIterator& iter) const;
 
             bool operator!=(const PrimeIterator& iter) const;
@@ -73,22 +111,28 @@ namespace ariel {
         };
 
         class SideCrossIterator {
-            SideCrossIterator(list<int>* elementsList, list<int>::iterator startIter, list<int>::iterator endIter, int location);
             list<int> *elementsList;
             list<int>::iterator startIter, endIter;
             bool isForward ;
             int location ;
 
+            SideCrossIterator(list<int>* elementsList, list<int>::iterator startIter, list<int>::iterator endIter, int location);
+
         public:
             SideCrossIterator(MagicalContainer& container);
+
             SideCrossIterator(const SideCrossIterator& other) ;
+
             SideCrossIterator(SideCrossIterator&& other) noexcept = default;
+
             SideCrossIterator& operator=(SideCrossIterator&& other) noexcept = default;
+
             ~SideCrossIterator() ;
 
             SideCrossIterator begin() const;
 
             SideCrossIterator end() const;
+
             SideCrossIterator& operator=(const SideCrossIterator& other) ;
 
             bool operator==(const SideCrossIterator& iter) const;
@@ -96,25 +140,13 @@ namespace ariel {
             bool operator!=(const SideCrossIterator& iter) const;
 
             bool operator<(const SideCrossIterator& iter) const ;
+
             bool operator>(const SideCrossIterator& iter) const ;
 
             SideCrossIterator &operator++();
 
             int operator*();
         };
-
-        MagicalContainer() ;
-        void addElement(int element);
-
-        void removeElement(int element);
-
-        int size();
-        list<int> getList(){
-            return elementsList ;
-        }
-        list<int*> getPrimesList(){
-            return primesList ;
-        }
     };
 }
 #endif //MAGICAL_ITERATORS_MAGICALCONTAINER_H
