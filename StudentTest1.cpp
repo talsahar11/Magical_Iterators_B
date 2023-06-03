@@ -1,7 +1,7 @@
 #include "doctest.h"
 #include "sources/MagicalContainer.hpp"
 #include <stdexcept>
-
+#include <iostream>
 using namespace ariel;
 using namespace std;
 // Test case for adding elements to the MagicalContainer
@@ -367,6 +367,8 @@ TEST_CASE("Comparing SideCrossIterator") {
 
         CHECK((itStart1 == itStart2));
         CHECK_FALSE((itStart1 != itStart2));
+
+        cout << *itStart1 << "  Shit  " << *itStart2 <<endl;
         CHECK_FALSE((itStart1 > itStart2));
         CHECK_FALSE((itStart1 < itStart2));
 
